@@ -40,7 +40,7 @@ d1 = 1; d2 = 1;
 
 
 #Begin the Gibbs sampler
-iter =100000;
+iter =1000000;
 burn = 2000;
 lambda_grid = [1:1:nobs-1]';
 lambda_date = [1851:1:1961]';
@@ -91,9 +91,9 @@ for ii = 1:iter
     end;
 end;
 
-plot(x=gamma_final,Geom.histogram)
-plot(x=delta_final,Geom.histogram)
-plot(x=lambda_final,Geom.histogram)
+plot(x=gamma_final,Geom.histogram(bincount = 100))
+plot(x=delta_final,Geom.histogram(bincount = 100))
+plot(x=lambda_final,Geom.histogram())
 
 
 #disp('Post means and std deviatiations');
