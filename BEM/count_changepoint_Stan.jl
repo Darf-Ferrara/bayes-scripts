@@ -63,11 +63,10 @@ stanmodel = Stanmodel(name="changePoint", model=changePointModel);
 stanmodel |> display
 
 const changedata = [
-	@Compat.Dict("r_e" => 1,"r_l" = 0.2,"T" => numobs, "D" => data),
-	@Compat.Dict("r_e" => 1,"r_l" = 0.2,"T" => numobs, "D" => data),
-	@Compat.Dict("r_e" => 1,"r_l" = 0.2,"T" => numobs, "D" => data),
-	@Compat.Dict("r_e" => 1,"r_l" = 0.2,"T" => numobs, "D" => data)
-
+	@Compat.Dict("r_e" => 1111.1,"r_l" = 11110.2,"T" => numobs, "D" => data),
+	@Compat.Dict("r_e" => 1111.1,"r_l" = 11110.2,"T" => numobs, "D" => data),
+	@Compat.Dict("r_e" => 1111.1,"r_l" = 11110.2,"T" => numobs, "D" => data),
+	@Compat.Dict("r_e" => 1111.1,"r_l" = 11110.2,"T" => numobs, "D" => data)
 ]
 
 

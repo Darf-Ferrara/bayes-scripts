@@ -1,18 +1,16 @@
 #This program fits a regression model with one
 #unknown change point using generated data
-
 using DataFrames
 using Gadfly
 using Distributions
-
-dataFaked = false		
+dataFaked = false
 
 function generateChangeData(ChangePointLengths,vecOfPoissonLambda)
 	if length(ChangePointLengths) != length(vecOfPoissonLambda)
 		error("length(ChangePointLengths) != length(vecOfPoissonLambda)")
 	else
 		asdf = [rand(Poisson(vecOfPoissonLambda[ii] ),ChangePointLengths[ii]) for ii = [1:length(vecOfPoissonLambda)]]
-		reduce(vcat,asdf) # convert iterator to a vector
+		reduce(vcat,asdf)
 	end	
 end
 
@@ -42,7 +40,7 @@ d1 = 1; d2 = 1;
 
 
 #Begin the Gibbs sampler
-iter =10000;
+iter =1000000;
 burn = 2000;
 lambda_grid = [1:1:nobs-1]';
 lambda_date = [1851:1:1961]';
@@ -93,13 +91,11 @@ for ii = 1:iter
     end;
 end;
 
-plot1 = plot(x=gamma_final,Geom.histogram(bincount = 100),Guide.xlabel("Rate"), Guide.ylabel("Density"))
-plot2 = plot(x=delta_final,Geom.histogram(bincount = 100),Guide.xlabel("Rate"), Guide.ylabel("Density"))
-plot3 = plot(x=lambda_final,Geom.histogram()			 ,Guide.xlabel("Year"), Guide.ylabel("Density"))
+plot(x=gamma_final,Geom.histogram(bincount = 100))
+plot(x=delta_final,Geom.histogram(bincount = 100))
+plot(x=lambda_final,Geom.histogram())
 
-draw(PNG("plot1.png", 6inch, 3inch), plot1)
-draw(PNG("plot2.png", 6inch, 3inch), plot2)
-draw(PNG("plot3.png", 6inch, 3inch), plot3)
+
 #disp('Post means and std deviatiations');
 #disp('For betas, thetas, sig, tau and lambda');
 #[mean(gamma_final')' std(gamma_final')']
